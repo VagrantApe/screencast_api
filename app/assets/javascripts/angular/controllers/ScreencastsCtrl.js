@@ -4,6 +4,11 @@
 
 	function ScreencastsCtrl(ScreencastService){
 		this.screencasts = ScreencastService.casts.query();
+		this.selectedScreencast = null;
+
+		this.showScreencast = function(screencast){
+			this.selectedScreencast = screencast;
+		};
 	}
 
 	angular

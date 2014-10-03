@@ -1,9 +1,19 @@
 <div ng-controller="ScreencastsCtrl as screencasts">
 	<div id="screencast-list-container">
 		<ul>
-			<li ng-repeat="screencast in screencasts.screencasts">
+			<li ng-repeat="screencast in screencasts.screencasts" ng-click="screencasts.showScreencast(screencast)">
 				<h3>{{screencast.title}} <small>({{screencast.duration}})</small></h3>
 			</li>
 		</ul>
 	</div>
-</div>	
+
+	<div id='screencast-view-container' ng-show="screencasts.selectedScreencast">
+		<h2>{{screencasts.selectedScreencast.title}}</h2>
+		<p>{{screencasts.selectedScreencast.summary}}</p>
+		<div flow-player id="player"></div>
+		<p>
+			Published at {{screencasts.selectedScreencast.published_at | date: 'mediumDate'}}
+			- <a ng-href="{{screencasts.selectedScreencast.link}}">{{screencasts.selectedScreencast.link}}</a>
+		</p>
+	</div>
+</div>
